@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const servicePorts = [4000, 4001, 4002];
+const servicePorts = [4000, 4001, 4002, 4003];
 
 app.post("/events", (req, res) => {
   const event = req.body;

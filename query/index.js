@@ -12,12 +12,25 @@ const posts = {};
 
 const events = {
   CommentCreated: (data) => {
-    if (posts[data.postId]) {
-      posts[data.postId].comments.push({ id: data.id, content: data.content });
-    }
+    const { postId, status, id } = data;
+    if (!posts[postId]) return;
+
+    const comments = posts[postId].comments;
+
+    comments.push({ postId, status, id });
   },
   PostCreated: (data) => {
     posts[data.id] = { id: data.id, title: data.title, comments: [] };
+  },
+  CommentUpdated: (data) => {
+    const { id, postId, content, status } = data;
+    if (!posts[postId]) return;
+
+    const comment = posts[postId].comments.find(
+      (currentComment) => currentComment.id === id
+    );
+
+    Object.assign(comment, { status, content });
   },
 };
 

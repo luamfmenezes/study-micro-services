@@ -8,12 +8,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const events = [];
+
 const servicePorts = [4000, 4001, 4002, 4003];
 
 app.post("/events", (req, res) => {
   const event = req.body;
 
   console.log(`Event: ${event.type}`);
+
+  events.push(event);
 
   servicePorts.forEach((port) => {
     axios
@@ -22,6 +26,10 @@ app.post("/events", (req, res) => {
   });
 
   res.send({ sstatus: "ok" });
+});
+
+app.get("/events", (req, res) => {
+  res.send(events);
 });
 
 app.listen(4005, () => {

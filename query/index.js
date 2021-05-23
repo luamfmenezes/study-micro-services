@@ -24,14 +24,13 @@ const events = {
   },
   CommentUpdated: (data) => {
     const { id, postId, content, status } = data;
-    console.log('Updated')
-    
+    console.log("Updated");
+
     if (!posts[postId]) return;
 
     const comment = posts[postId].comments.find(
       (currentComment) => currentComment.id === id
     );
-
 
     Object.assign(comment, { status, content });
   },
@@ -51,6 +50,12 @@ app.post("/events", (req, res) => {
   res.send({});
 });
 
-app.listen(4002, () => {
+app.listen(4002, async () => {
+  const { data: events } = await axios.get("http://localhost:4005/events");
+
+  events.forEach((event) => {
+    events[event.type](event.data);
+  });
+
   console.log("query listening on port 4002 🚀");
 });

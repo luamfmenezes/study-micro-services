@@ -13,7 +13,7 @@ const servicePorts = [4000, 4001, 4002, 4003];
 app.post("/events", (req, res) => {
   const event = req.body;
 
-  console.log("Event recieved");
+  console.log(`Event: ${event.type}`);
 
   servicePorts.forEach((port) => {
     axios

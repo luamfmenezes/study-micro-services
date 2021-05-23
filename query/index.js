@@ -24,11 +24,14 @@ const events = {
   },
   CommentUpdated: (data) => {
     const { id, postId, content, status } = data;
+    console.log('Updated')
+    
     if (!posts[postId]) return;
 
     const comment = posts[postId].comments.find(
       (currentComment) => currentComment.id === id
     );
+
 
     Object.assign(comment, { status, content });
   },

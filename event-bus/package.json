@@ -1,8 +1,8 @@
 {
-  "name": "comments",
+  "name": "event-bus",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "LuamFMenezes",
+  "author": "LuamFmenezes",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",

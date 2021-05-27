@@ -36,7 +36,7 @@ const events = {
   },
 };
 
-app.get("/posts", (req, res) => {
+app.get("/query/posts", (req, res) => {
   res.send(posts);
 });
 
@@ -51,7 +51,7 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(4002, async () => {
-  const { data: events } = await axios.get("http://localhost:4005/events");
+  const { data: events } = await axios.get("http://event-bus-srv:4005/events");
 
   events.forEach((event) => {
     events[event.type](event.data);

@@ -10,7 +10,12 @@ app.use(cors());
 
 const events = [];
 
-const servicePorts = [4000, 4001, 4002, 4003];
+const serviceURLs = [
+  "http://posts-clusterip-srv:4000",
+  "http://comment-srv:4001",
+  "http://query-srv:4002",
+  "http://moderation-srv:4003",
+];
 
 app.post("/events", (req, res) => {
   const event = req.body;
@@ -19,10 +24,8 @@ app.post("/events", (req, res) => {
 
   events.push(event);
 
-  servicePorts.forEach((port) => {
-    axios
-      .post(`http://localhost:${port}/events`, event)
-      .catch((e) => console.log("Error port: ", port));
+  serviceURLs.forEach((url) => {
+    axios.post(url, event).catch((e) => console.log("Error: ", url));
   });
 
   res.send({ sstatus: "ok" });

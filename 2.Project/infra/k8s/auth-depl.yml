@@ -23,8 +23,9 @@ metadata:
 spec:
   selector:
     app: auth
+  # type : NodePort
   ports:
     - name: auth
       protocol: TCP
-      port: 3000
-      tartgetPort: 3000
+      port: 6001
+      targetPort: 6001

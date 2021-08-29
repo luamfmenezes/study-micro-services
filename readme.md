@@ -44,6 +44,20 @@ To access docker with Toolbox with Minikube -> minikubeIp:3xxxx/posts
 
 Create docker-image -> upload to docker-hub -> deployment with pod for that image -> create services to comunication.
 
+## Chrome tips
+
+type the follow command in the http screen error can redirect:
+thisisunsafe
+
 ## Doubts
 
 1. How to use local k8s?
+
+## Files
+
+1. Deployment -> Setup the pods
+2. Servie -> Set
+3. Skaffold -> 
+
+## Skafld
+Skafold is the CI/CD for ks8.
